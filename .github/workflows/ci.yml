@@ -21,15 +21,18 @@ jobs:
           node-version: '24'
           cache: 'npm'
 
+
       - name: Install dependencies
-        run: npm ci
+        run: npm ci --ignore-scripts
+
 
       - name: Run tests
         run: npm test -- --coverage
         env:
           NODE_OPTIONS: --experimental-vm-modules
 
+
       - name: SonarCloud Scan
-        uses: SonarSource/sonarqube-scan-action@v7
+        uses: SonarSource/sonarqube-scan-action@c7ee0f9df90b7aa20e8dcf9695dcfe2e7da5b4f2 # v7.2.1
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
